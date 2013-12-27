@@ -24,7 +24,7 @@ node["openssh"]["packages"].each do |name|
 end
 
 template node["openssh"]["sysconfig_file"] do
-  source "sshd_config.conf.erb"
+  source "sysconfig.conf.erb"
   owner "root"
   group "root"
   mode 0644
@@ -34,9 +34,9 @@ template node["openssh"]["sysconfig_file"] do
   )
 
   notifies :restart, "service[openssh]"
-  
-  only_if do
-    node["openssh"]["sysconfig_file"]
+
+  not_if do
+    node["openssh"]["sysconfig_file"].empty?
   end
 end
 
@@ -51,6 +51,10 @@ template node["openssh"]["config_file"] do
   )
 
   notifies :restart, "service[openssh]"
+
+  not_if do
+    node["openssh"]["config_file"].empty?
+  end
 end
 
 service "openssh" do
