@@ -34,6 +34,10 @@ template node["openssh"]["sysconfig_file"] do
   )
 
   notifies :restart, "service[openssh]"
+  
+  only_if do
+    node["openssh"]["sysconfig_file"]
+  end
 end
 
 template node["openssh"]["config_file"] do

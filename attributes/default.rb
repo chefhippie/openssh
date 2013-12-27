@@ -17,13 +17,30 @@
 # limitations under the License.
 #
 
-default["openssh"]["packages"] = %w(
-  openssh
+default["openssh"]["packages"] = value_for_platform_family(
+  "debian" => %w(
+    openssh-client
+    openssh-server
+  ),
+  "ubuntu" => %w(
+    openssh-client
+    openssh-server
+  ),
+  "suse" => %w(
+    openssh
+  )
 )
-
-default["openssh"]["service_name"] = "sshd"
+default["openssh"]["service_name"] = value_for_platform_family(
+  "debian" => "ssh",
+  "ubuntu" => "ssh",
+  "suse" => "sshd"
+)
 default["openssh"]["service_options"] = ""
-default["openssh"]["sysconfig_file"] = "/etc/sysconfig/ssh"
+default["openssh"]["sysconfig_file"] = value_for_platform_family(
+  "debian" => "/etc/default/ssh",
+  "ubuntu" => "/etc/default/ssh",
+  "suse" => "/etc/sysconfig/ssh"
+)
 default["openssh"]["config_file"] = "/etc/ssh/sshd_config"
 default["openssh"]["listen"] = "0.0.0.0"
 default["openssh"]["port"] = "22"
