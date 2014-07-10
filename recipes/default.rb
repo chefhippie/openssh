@@ -58,6 +58,8 @@ template node["openssh"]["config_file"] do
 end
 
 service "openssh" do
+  provider Chef::Provider::Service::Upstart if platform? "ubuntu"
+
   service_name node["openssh"]["service_name"]
   action [:enable, :start]
 end
