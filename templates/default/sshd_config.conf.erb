@@ -9,31 +9,31 @@ Protocol 2
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_dsa_key
 
-PermitRootLogin yes
-RSAAuthentication yes
-PubkeyAuthentication yes
-StrictModes yes
-IgnoreRhosts yes
-PasswordAuthentication yes
-X11Forwarding yes
-PrintLastLog yes
-TCPKeepAlive yes
-UsePAM yes
-ChallengeResponseAuthentication yes
-AllowAgentForwarding yes
-AllowTcpForwarding yes
-X11UseLocalhost yes
-UseDNS yes
+PermitRootLogin <%= @permit_root_login %>
+RSAAuthentication <%= @rsa_authentication %>
+PubkeyAuthentication <%= @pubkey_authentication %>
+StrictModes <%= @strict_modes %>
+IgnoreRhosts <%= @ignore_rhosts %>
+PasswordAuthentication <%= @password_authentication %>
+X11Forwarding <%= @x11_forwarding %>
+PrintLastLog <%= @print_last_log %>
+TCPKeepAlive <%= @tcp_keep_alive %>
+UsePAM <%= @use_pam %>
+ChallengeResponseAuthentication <%= @challenge_response_authentication %>
+AllowAgentForwarding <%= @allow_agent_forwarding %>
+AllowTcpForwarding <%= @allow_tcp_forwarding %>
+X11UseLocalhost <%= @x11_use_localhost %>
+UseDNS <%= @use_dns %>
 
-RhostsRSAAuthentication no
-HostbasedAuthentication no
-IgnoreUserKnownHosts no
-PermitEmptyPasswords no
-PermitUserEnvironment no
-PermitTunnel no
-PrintMotd no
-GatewayPorts no
-UseLogin no
+RhostsRSAAuthentication <%= @rhost_rsa_authentication %>
+HostbasedAuthentication <%= @hostbased_authentication %>
+IgnoreUserKnownHosts <%= @ignore_user_known_hosts %>
+PermitEmptyPasswords <%= @permit_empty_passwords %>
+PermitUserEnvironment <%= @permit_user_environment %>
+PermitTunnel <%= @permit_tunnel %>
+PrintMotd <%= @print_motd %>
+GatewayPorts <%= @gateway_ports %>
+UseLogin <%= @use_login %>
 
 #KerberosAuthentication no
 #KerberosOrLocalPasswd yes
