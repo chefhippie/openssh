@@ -22,10 +22,6 @@ default["openssh"]["packages"] = value_for_platform_family(
     openssh-client
     openssh-server
   ),
-  "ubuntu" => %w(
-    openssh-client
-    openssh-server
-  ),
   "suse" => %w(
     openssh
   )
@@ -33,14 +29,12 @@ default["openssh"]["packages"] = value_for_platform_family(
 
 default["openssh"]["service_name"] = value_for_platform_family(
   "debian" => "ssh",
-  "ubuntu" => "ssh",
   "suse" => "sshd"
 )
 default["openssh"]["service_options"] = ""
 
 default["openssh"]["sysconfig_file"] = value_for_platform_family(
   "debian" => "/etc/default/ssh",
-  "ubuntu" => "/etc/default/ssh",
   "suse" => "/etc/sysconfig/ssh"
 )
 
