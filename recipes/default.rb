@@ -57,6 +57,26 @@ template node["openssh"]["config_file"] do
   end
 end
 
+template node["openssh"]["keygen_file"] do
+  source "keygen.erb"
+  owner "root"
+  group "root"
+  mode 0755
+
+  variables(
+    node["openssh"]
+  )
+
+  not_if do
+    node["openssh"]["keygen_file"].empty?
+  end
+end
+
+#
+# TODO(must): Execute keygen script on host_key change
+# TODO(must): Delete all old unused host_key files
+#
+
 service "openssh" do
   provider Chef::Provider::Service::Upstart if platform? "ubuntu"
 

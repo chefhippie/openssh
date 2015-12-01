@@ -11,8 +11,13 @@ ListenAddress <%= listen %>
 
 Protocol 2
 
-HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_dsa_key
+<%- @host_keys.each do |key| -%>
+HostKey <%= key %>
+<%- end -%>
+
+MACs <%= @macs.join(",") %>
+KexAlgorithms <%= @kex_algorithms.join(",") %>
+Cyphers <%= @cyphers.join(",") %>
 
 PermitRootLogin <%= @permit_root_login %>
 RSAAuthentication <%= @rsa_authentication %>
